@@ -45,20 +45,6 @@
         }
 
 
-        function save_data(){
-            $fname = $this->stdName;
-            $stdRoll = $this->stdRoll;
-            
-            $sql = "INSERT INTO userdata(firstName, lastName)
-            VALUES ($fname, $stdRoll)";
-
-            if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-            } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-          
-        }
 
 
     }
@@ -78,7 +64,6 @@
 
     echo "incremental counter called, value is : ".student::getcount();
 
-    $objA->save_data();
 
 
 
