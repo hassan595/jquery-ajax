@@ -93,6 +93,7 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
+        <button class="btn btn-primary btn-block" id="btn-fresh">Fresh</button>
 
      <form id="formElem" novalidate>
 
@@ -268,6 +269,26 @@
 
 
     $(document).ready(function(){
+
+       $("#btn-fresh").click(function(e){
+            $.ajax({
+               url:'requesthandle.php',
+                type:'POST',
+                processData: false,
+                contentType: false,
+                success: function(data){
+                   alert(data);
+                 data = JSON.parse(data);
+                    $("#firstName").val(data["firstName"]);
+                    $("#lastName").val(data["lastName"]);
+                    $("#username").val(data["userName"]);
+
+                }
+            });
+       });
+
+
+
       $("#btn-checkout").click(function(e){
           e.preventDefault();
           let val = new FormData(document.getElementById("formElem"));
@@ -281,18 +302,11 @@
               success: function(data) {
 
                   $("#result").text(data);
-
               }
           });
         });
     });
 
-    
-
-
-
-
-  
   </script>     
 </body>
 
