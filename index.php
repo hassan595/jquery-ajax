@@ -94,7 +94,7 @@
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
 
-<!--     <form  novalidate>-->
+     <form id="formElem" novalidate>
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -242,8 +242,14 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block"   id="btn-checkout">Continue to checkout</button>
-<!--     </form>-->
+        <button class="btn btn-primary btn-lg btn-block" id="btn-checkout">Continue to checkout</button>
+
+     </form>
+
+    <div id ="result">
+
+    </div>
+
     </div>
   </div>
 
@@ -256,25 +262,29 @@
     </ul>
   </footer>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXfdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>-->
   <script>
+
+
     $(document).ready(function(){
       $("#btn-checkout").click(function(e){
           e.preventDefault();
-          $.ajax( {
-                 url: 'requesthandle.php',
-                type: 'POST',
-                data: {    'x': '10',
-                        'y': '20'
-                 },
-              success: function(data){
-                    alert(data);
-                 }
-              }
-          );
-     });
+          let val = new FormData(document.getElementById("formElem"));
+          // alert(val['firstName']);
+          $.ajax({
+              url: 'requesthandle.php',
+              type: 'POST',
+              data: val,
+              processData:false,
+              contentType: false,
+              success: function(data) {
 
+                  $("#result").text(data);
+
+              }
+          });
+        });
     });
 
     
