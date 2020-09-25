@@ -94,7 +94,7 @@
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
 
-     <form  novalidate>
+<!--     <form  novalidate>-->
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -243,7 +243,7 @@
         </div>
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block"   id="btn-checkout">Continue to checkout</button>
-     </form>
+<!--     </form>-->
     </div>
   </div>
 
@@ -261,12 +261,11 @@
   <script>
     $(document).ready(function(){
       $("#btn-checkout").click(function(e){
-        e.preventDefault();
-          $.ajax(
-                {
+          e.preventDefault();
+          $.ajax( {
                  url: 'requesthandle.php',
-             type: 'POST',
-             data: {    'x': '10',
+                type: 'POST',
+                data: {    'x': '10',
                         'y': '20'
                  },
               success: function(data){
